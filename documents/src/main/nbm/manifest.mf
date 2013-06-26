@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: ru/sirius/overheads/documents/Bundle.properties
+OpenIDE-Module-Requires: org.openide.windows.WindowManager

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+    <property name="hibernate.connection.url">jdbc:h2:tcp://localhost/~/Projects/sirius/Distributor/data/db0001;INIT=SET SCHEMA NOMENCLATURE;</property>
+    <property name="hibernate.connection.username">dbadmin</property>
+    <property name="hibernate.connection.password">dbadmin</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.default_schema">NOMENCLATURE</property>
+    <property name="hibernate.hbm2ddl.auto">validate</property>
+    <mapping class="" file="" jar="" package="" resource="../../../hibernate.hbm.xml"/>
+    <mapping class="ru.sirius.overheads.model.entity.Classifier"/>
+    <mapping class="ru.sirius.overheads.model.entity.Article"/>
+    <mapping class="ru.sirius.overheads.model.entity.Classifier"/>
+    <mapping class="ru.sirius.overheads.model.entity.Article"/>
+    <mapping class="ru.sirius.overheads.model.entity.Classifier"/>
+    <mapping class="ru.sirius.overheads.model.entity.Article"/>
+    <mapping resource="../java/ru/sirius/overheads/model/entity/hibernate.hbm.xml"/>
+    <mapping class="ru.sirius.overheads.model.entity.Classifier"/>
+    <mapping class="ru.sirius.overheads.model.entity.Article"/>
+  </session-factory>
+</hibernate-configuration>
