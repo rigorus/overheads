@@ -1,11 +1,14 @@
 package ru.sirius.overheads.model.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,16 +16,34 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLASSIFIER", catalog = "DB0001")
-public class Classifier implements java.io.Serializable {
+@Table(name = "CLASSIFIER", catalog = "DB0001", schema="PUBLIC")
+public class Classifier implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "CLASSIFIER_ID", unique = true, nullable = false)
     private int classifierId;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARENT_ID")
     private Classifier parent;
+    
+    @Column(name = "CLASSIFIER_NAME", length = 200)
     private String classifierName;
+    
+    @Column(name = "BREADTH_INDEX", nullable = false)
     private int breadthIndex;
+    
+    @Column(name = "DEPTH_INDEX", nullable = false)
     private int depthIndex;
+    
+    @Column(name = "COMMENT", length = 2000)
     private String comment;
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     private Set<Classifier> children = new HashSet<Classifier>(0);
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "classifier")
     private Set<Article> articles = new HashSet<Article>(0);
 
     public Classifier() {
@@ -45,8 +66,6 @@ public class Classifier implements java.io.Serializable {
         this.articles = articles;
     }
 
-    @Id
-    @Column(name = "CLASSIFIER_ID", unique = true, nullable = false)
     public int getClassifierId() {
         return this.classifierId;
     }
@@ -55,8 +74,6 @@ public class Classifier implements java.io.Serializable {
         this.classifierId = classifierId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PARENT_ID")
     public Classifier getClassifier() {
         return this.parent;
     }
@@ -65,7 +82,6 @@ public class Classifier implements java.io.Serializable {
         this.parent = classifier;
     }
 
-    @Column(name = "CLASSIFIER_NAME", length = 200)
     public String getClassifierName() {
         return this.classifierName;
     }
@@ -74,7 +90,6 @@ public class Classifier implements java.io.Serializable {
         this.classifierName = classifierName;
     }
 
-    @Column(name = "BREADTH_INDEX", nullable = false)
     public int getBreadthIndex() {
         return this.breadthIndex;
     }
@@ -83,7 +98,6 @@ public class Classifier implements java.io.Serializable {
         this.breadthIndex = breadthIndex;
     }
 
-    @Column(name = "DEPTH_INDEX", nullable = false)
     public int getDepthIndex() {
         return this.depthIndex;
     }
@@ -92,7 +106,6 @@ public class Classifier implements java.io.Serializable {
         this.depthIndex = depthIndex;
     }
 
-    @Column(name = "COMMENT", length = 2000)
     public String getComment() {
         return this.comment;
     }
@@ -101,7 +114,6 @@ public class Classifier implements java.io.Serializable {
         this.comment = comment;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "classifier")
     public Set<Classifier> getChildren() {
         return this.children;
     }
@@ -110,7 +122,6 @@ public class Classifier implements java.io.Serializable {
         this.children = classifiers;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "classifier")
     public Set<Article> getArticles() {
         return this.articles;
     }
