@@ -19,21 +19,6 @@ import ru.sirius.overheads.model.utils.HibernateUtil;
 public class Main {
 
     public static void main(String[] args) {
-        
-        File file = new File("as");
-        System.out.println(file.getAbsoluteFile());
-        file.delete();
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List<Position> articles = session.createQuery("from Position").list();
-        for (Position article : articles) {
-//            System.out.println(article.getFullName());
-        }
-//        session.save(new Article(2000, "DDD"));
-        Delivery delivery = new Delivery(new Date());
-//        delivery.setArticle((Article) session.get(Article.class, new Integer(2000)));
-        session.save(delivery);
-        session.getTransaction().commit();
+        PositionService.getRootPosition();
     }
 }

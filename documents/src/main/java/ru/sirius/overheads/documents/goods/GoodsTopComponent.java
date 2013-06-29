@@ -4,6 +4,8 @@
  */
 package ru.sirius.overheads.documents.goods;
 
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -32,12 +34,22 @@ import org.openide.util.NbBundle.Messages;
     "HINT_GoodsTopComponent=This is a Goods window"
 })
 public final class GoodsTopComponent extends TopComponent {
+    
+    private TreeModel groupModel;
+    private GoodsTreeTableModel complexModel;
+    private final GoodsTreeBuilder builder;
 
     public GoodsTopComponent() {
+
+        builder = new GoodsTreeBuilder();
+        groupModel = new DefaultTreeModel(builder.buildGroupTree());
+        complexModel = new GoodsTreeTableModel(builder.buidComplexTree());
+        
         initComponents();
         setName(Bundle.CTL_GoodsTopComponent());
         setToolTipText(Bundle.HINT_GoodsTopComponent());
-
+       
+        complexTreeTable.setTreeTableModel(complexModel);
     }
 
     /**
@@ -52,13 +64,14 @@ public final class GoodsTopComponent extends TopComponent {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jXTreeTable1 = new org.jdesktop.swingx.JXTreeTable();
+        complexTreeTable = new org.jdesktop.swingx.JXTreeTable();
 
+        jTree1.setModel(groupModel);
         jScrollPane1.setViewportView(jTree1);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
-        jScrollPane2.setViewportView(jXTreeTable1);
+        jScrollPane2.setViewportView(complexTreeTable);
 
         jSplitPane1.setRightComponent(jScrollPane2);
 
@@ -81,11 +94,11 @@ public final class GoodsTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.jdesktop.swingx.JXTreeTable complexTreeTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTree jTree1;
-    private org.jdesktop.swingx.JXTreeTable jXTreeTable1;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {

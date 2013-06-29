@@ -56,4 +56,83 @@ public class Position implements java.io.Serializable {
     public Position() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Position getParent() {
+        return parent;
+    }
+
+    public void setParent(Position parent) {
+        this.parent = parent;
+    }
+
+    public Set<Position> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<Position> children) {
+        this.children = children;
+    }
+
+    public boolean isGroup() {
+        return group;
+    }
+
+    public void setGroup(boolean group) {
+        this.group = group;
+    }
+
+    public int getBreadthIndex() {
+        return breadthIndex;
+    }
+
+    public void setBreadthIndex(int breadthIndex) {
+        this.breadthIndex = breadthIndex;
+    }
+
+    public int getDebthIndex() {
+        return debthIndex;
+    }
+
+    public void setDebthIndex(int debthIndex) {
+        this.debthIndex = debthIndex;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public PositionInfo getInfo() {
+        return info;
+    }
+
+    public void setInfo(PositionInfo info) {
+        this.info = info;
+    }    
 }
