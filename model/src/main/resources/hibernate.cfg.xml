@@ -8,11 +8,19 @@
     <property name="hibernate.connection.password">dbadmin</property>
     <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
     <property name="hibernate.current_session_context_class">jta</property>
-    <mapping class="ru.sirius.overheads.model.entity.Classifier"/>
-    <mapping class="ru.sirius.overheads.model.entity.Article"/>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <mapping class="ru.sirius.overheads.model.entity.Position"/>
+    <mapping class="ru.sirius.overheads.model.entity.PositionInfo"/>
     <mapping class="ru.sirius.overheads.model.entity.Delivery"/>
-    <mapping class="ru.sirius.overheads.model.entity.DeliveryArticle"/>
+    <mapping class="ru.sirius.overheads.model.entity.DeliveryPosition"/>
+    <mapping class="ru.sirius.overheads.model.entity.Invoice"/>
+    <mapping class="ru.sirius.overheads.model.entity.InvoicePosition"/>
+    <mapping class="ru.sirius.overheads.model.entity.Template"/>        
+    <mapping class="ru.sirius.overheads.model.entity.TemplatePosition"/>        
+    <mapping class="ru.sirius.overheads.model.entity.Partner"/>
+    <mapping class="ru.sirius.overheads.model.entity.Charges"/>        
   </session-factory>
 </hibernate-configuration>

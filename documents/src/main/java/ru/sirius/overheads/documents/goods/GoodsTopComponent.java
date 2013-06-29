@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.sirius.overheads.documents.nomenclature;
+package ru.sirius.overheads.documents.goods;
 
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -14,29 +14,29 @@ import org.openide.util.NbBundle.Messages;
  * Top component which displays something.
  */
 @ConvertAsProperties(
-        dtd = "-//ru.sirius.overheads.documents.nomenclature//Nomenclature//EN",
+        dtd = "-//ru.sirius.overheads.documents.goods//Goods//EN",
         autostore = false)
 @TopComponent.Description(
-        preferredID = "NomenclatureTopComponent",
-        iconBase = "ru/sirius/overheads/documents/nomenclature/1371165588_Autocomplete.png",
+        preferredID = "GoodsTopComponent",
+        iconBase = "ru/sirius/overheads/documents/goods/1371165588_Autocomplete.png",
         persistenceType = TopComponent.PERSISTENCE_ALWAYS)
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
-@ActionID(category = "Window", id = "ru.sirius.overheads.documents.nomenclature.NomenclatureTopComponent")
+@ActionID(category = "Window", id = "ru.sirius.overheads.documents.goods.GoodsTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
-        displayName = "#CTL_NomenclatureAction",
-        preferredID = "NomenclatureTopComponent")
+        displayName = "#CTL_GoodsAction",
+        preferredID = "GoodsTopComponent")
 @Messages({
-    "CTL_NomenclatureAction=Nomenclature",
-    "CTL_NomenclatureTopComponent=Nomenclature Window",
-    "HINT_NomenclatureTopComponent=This is a Nomenclature window"
+    "CTL_GoodsAction=Goods",
+    "CTL_GoodsTopComponent=Goods Window",
+    "HINT_GoodsTopComponent=This is a Goods window"
 })
-public final class NomenclatureTopComponent extends TopComponent {
+public final class GoodsTopComponent extends TopComponent {
 
-    public NomenclatureTopComponent() {
+    public GoodsTopComponent() {
         initComponents();
-        setName(Bundle.CTL_NomenclatureTopComponent());
-        setToolTipText(Bundle.HINT_NomenclatureTopComponent());
+        setName(Bundle.CTL_GoodsTopComponent());
+        setToolTipText(Bundle.HINT_GoodsTopComponent());
 
     }
 
@@ -48,19 +48,44 @@ public final class NomenclatureTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jXTreeTable1 = new org.jdesktop.swingx.JXTreeTable();
+
+        jScrollPane1.setViewportView(jTree1);
+
+        jSplitPane1.setLeftComponent(jScrollPane1);
+
+        jScrollPane2.setViewportView(jXTreeTable1);
+
+        jSplitPane1.setRightComponent(jScrollPane2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTree jTree1;
+    private org.jdesktop.swingx.JXTreeTable jXTreeTable1;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {

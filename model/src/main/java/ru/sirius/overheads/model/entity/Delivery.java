@@ -2,26 +2,35 @@ package ru.sirius.overheads.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 @Entity
-@Table(name = "DELIVERY", catalog = "DB0001", schema = "PUBLIC")
+@Table(name = "DELIVERY")
 public class Delivery implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "DELIVERY_ID")
-    private int deliveryId;
+    @Column(name = "DELIVERY_ID")    
+    private int id;
+    
     @Column(name = "DELIVERY_DATE")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date date;
-
+    @Temporal(TemporalType.DATE)    
+    private Date date;         
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery")    
+    private Set<DeliveryPosition> positions;
+    
     public Delivery() {
     }
 
@@ -30,11 +39,11 @@ public class Delivery implements Serializable {
     }
 
     public int getDeliveryId() {
-        return deliveryId;
+        return id;
     }
 
     public void setDeliveryId(int deliveryId) {
-        this.deliveryId = deliveryId;
+        this.id = deliveryId;
     }
 
     public Date getDate() {
@@ -44,4 +53,5 @@ public class Delivery implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
 }

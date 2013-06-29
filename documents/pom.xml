@@ -74,11 +74,11 @@
             <artifactId>swingx-all</artifactId>
             <version>1.6.4</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.swinglabs.swingx</groupId>
             <artifactId>swingx-beaninfo</artifactId>
             <version>1.6.4</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-filesystems</artifactId>

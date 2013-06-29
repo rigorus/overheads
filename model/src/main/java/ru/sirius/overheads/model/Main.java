@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
-import ru.sirius.overheads.model.entity.Article;
+import ru.sirius.overheads.model.entity.Position;
 import ru.sirius.overheads.model.entity.Delivery;
 import ru.sirius.overheads.model.utils.HibernateUtil;
 
@@ -26,9 +26,9 @@ public class Main {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Article> articles = session.createQuery("from Article").list();
-        for (Article article : articles) {
-            System.out.println(article.getFullName());
+        List<Position> articles = session.createQuery("from Position").list();
+        for (Position article : articles) {
+//            System.out.println(article.getFullName());
         }
 //        session.save(new Article(2000, "DDD"));
         Delivery delivery = new Delivery(new Date());
