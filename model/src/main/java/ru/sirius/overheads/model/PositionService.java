@@ -24,15 +24,23 @@ public class PositionService {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-        List<Position> root = session.createCriteria(Position.class).add(Restrictions.isNull("parent")).list();
-        if( root.isEmpty()){
-            root = new Position();            
-            
+        Position root;
+        List<Position> rootPositions = session.createCriteria(Position.class).add(Restrictions.isNull("parent")).list();
+        if( rootPositions.isEmpty()){
+            root = new Position();                        
+            root.setName("Весь список");
+            root.setGroup(true);
+            root.setBreadthIndex(1);
+            root.setDebthIndex(1);
+            session.save(root);
+        }else{
+            // TODO проверка на наличие более чем одного коренного элемента !!!! 
+            root = rootPositions.get(0);
         }
         
         session.getTransaction().commit();
         
-        return root != null && root.size() == 1 ? root.get(0) : null;
+        return root;
     }
 
 }

@@ -134,5 +134,5 @@ public class Position implements java.io.Serializable {
 
     public void setInfo(PositionInfo info) {
         this.info = info;
-    }    
+    }        
 }

@@ -17,28 +17,47 @@ public class GoodsTreeBuilder {
             
     public DefaultMutableTreeNode buildGroupTree(){
         
-        DefaultMutableTreeNode tree = new DefaultMutableTreeNode(root);
+        GoodsNode tree = new GoodsNode(root);
         addChildren(tree, root.getChildren(),true);
         return tree;
     }
 
     public DefaultMutableTreeNode buidComplexTree() {
-        DefaultMutableTreeNode tree = new DefaultMutableTreeNode(root);
+        GoodsNode tree = new GoodsNode(root);
         addChildren(tree, root.getChildren(), false);
         return tree;
     }
     
-    private void addChildren(DefaultMutableTreeNode node, Set<Position> children, boolean onlyGroup){
+    private void addChildren(GoodsNode node, Set<Position> children, boolean onlyGroup){
         
         if( children.isEmpty()) return;
         for( Position position : children ){
             if( !onlyGroup || position.isGroup() ){
-                DefaultMutableTreeNode child = new DefaultMutableTreeNode(position);
+                GoodsNode child = new GoodsNode(position);
                 node.add(child);
                 if( !position.getChildren().isEmpty() ){
                     addChildren(child, position.getChildren(), onlyGroup);
                 }
             }
+        }
+    }
+    
+    private static class GoodsNode extends DefaultMutableTreeNode{
+
+        public GoodsNode() {
+        }
+
+        public GoodsNode(Position userObject) {
+            super(userObject);
+        }
+
+        public GoodsNode(Position userObject, boolean allowsChildren) {
+            super(userObject, allowsChildren);
+        }                
+        
+        @Override
+        public String toString(){
+            return ((Position) userObject).getName();
         }
     }
 }
