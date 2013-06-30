@@ -4,6 +4,8 @@
  */
 package ru.sirius.overheads.documents.goods;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -153,8 +155,17 @@ public final class GoodsTopComponent extends TopComponent {
     private void addGroupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGroupMenuItemActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)groupTree.getSelectionPath().getLastPathComponent();
         Position parent = (Position) node.getUserObject();
-        CreateGroupPanel panel = new CreateGroupPanel(parent);
-        DialogDescriptor descriptor = new DialogDescriptor(panel, "Создание подгруппы");
+        final CreateGroupPanel panel = new CreateGroupPanel(parent);
+        DialogDescriptor descriptor = new DialogDescriptor(panel, "Создание подгруппы", true,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if( "OK".equals(e.getActionCommand()) ){
+                    System.out.println("OK BUTTON PRESSED");
+//                    panel.get
+                }
+                
+            }
+        });
         DialogDisplayer.getDefault().notify(descriptor);
     }//GEN-LAST:event_addGroupMenuItemActionPerformed
 
