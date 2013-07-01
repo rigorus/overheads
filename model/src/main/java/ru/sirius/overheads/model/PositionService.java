@@ -43,4 +43,15 @@ public class PositionService {
         return root;
     }
 
+    public static void addGroup(Position newGroup) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(newGroup);
+        newGroup.getParent().getChildren().add(newGroup);
+        session.update(newGroup.getParent());
+        // TODO пересчет индексов !!! группы !!!
+        session.getTransaction().commit();        
+    }
+
+
 }

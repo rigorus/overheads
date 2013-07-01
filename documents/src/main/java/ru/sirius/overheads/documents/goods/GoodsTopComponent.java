@@ -1,18 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ru.sirius.overheads.documents.goods;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.DialogDescriptor;
-import org.openide.DialogDisplayer;
+import org.netbeans.validation.api.ui.swing.ValidationPanel;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
@@ -49,8 +44,30 @@ public final class GoodsTopComponent extends TopComponent {
     public GoodsTopComponent() {
 
         builder = new GoodsTreeBuilder();
-        groupModel = new DefaultTreeModel(builder.buildGroupTree());
-        complexModel = new GoodsTreeTableModel(builder.buidComplexTree());
+        groupModel = builder.buildGroupTree();
+        groupModel.addTreeModelListener(new TreeModelListener() {
+
+            @Override
+            public void treeNodesChanged(TreeModelEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void treeNodesInserted(TreeModelEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void treeNodesRemoved(TreeModelEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void treeStructureChanged(TreeModelEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        });
+        complexModel = builder.buidComplexTree();
         
         initComponents();
         setName(Bundle.CTL_GoodsTopComponent());
@@ -154,19 +171,17 @@ public final class GoodsTopComponent extends TopComponent {
 
     private void addGroupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGroupMenuItemActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)groupTree.getSelectionPath().getLastPathComponent();
-        Position parent = (Position) node.getUserObject();
-        final CreateGroupPanel panel = new CreateGroupPanel(parent);
-        DialogDescriptor descriptor = new DialogDescriptor(panel, "Создание подгруппы", true,new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if( "OK".equals(e.getActionCommand()) ){
-                    System.out.println("OK BUTTON PRESSED");
-//                    panel.get
-                }
-                
-            }
-        });
-        DialogDisplayer.getDefault().notify(descriptor);
+        Position parent = (Position) node.getUserObject();    
+        CreateGroupPanel panel = new CreateGroupPanel(parent);
+        ValidationPanel validationPanel = new ValidationPanel(panel.getValidationGroup());
+        validationPanel.setInnerComponent(panel);       
+        if( validationPanel.showOkCancelDialog("Создание подгруппы") ){
+            builder.createNewGroup(node, panel.getGroup());
+        }       
+        
+        
+//        DialogDescriptor descriptor = new DialogDescriptor(panel,"Создание подгруппы");
+//        DialogDisplayer.getDefault().notify(descriptor);
     }//GEN-LAST:event_addGroupMenuItemActionPerformed
 
     private void addArticleMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArticleMenuItemActionPerformed

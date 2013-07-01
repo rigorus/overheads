@@ -1,26 +1,41 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ru.sirius.overheads.documents.goods;
 
+
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.swing.SwingValidationGroup;
 import ru.sirius.overheads.model.entity.Position;
 
-/**
- *
- * @author igor
- */
 public class CreateGroupPanel extends javax.swing.JPanel {
 
+    
+    private Position group = new Position();
+    private final SwingValidationGroup validationGroup = SwingValidationGroup.create();
+
+    
     /**
      * Creates new form CreateGroupPanel
      */
     public CreateGroupPanel(Position parent) {
-        initComponents();
-        parentGroupTextField.setText(parent.getName());
-        parentGroupTextField.setEditable(false);        
+        
+        group.setParent(parent);
+        group.setGroup(true);
+        
+        initComponents();        
+                    
+        validationGroup.add(groupNameTextField, StringValidators.REQUIRE_NON_EMPTY_STRING);  
+        parentGroupTextField.setText(group.getParent().getName());    
     }
 
+    public SwingValidationGroup getValidationGroup() {
+        return validationGroup;
+    }
+    
+    
+    public Position getGroup(){         
+        group.setName(groupNameTextField.getText());
+        return group;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,52 +45,71 @@ public class CreateGroupPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        innerPanel = new javax.swing.JPanel();
         parentGroupTextField = new javax.swing.JTextField();
         groupNameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        parentGroupTextField.setEditable(false);
         parentGroupTextField.setText(org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.parentGroupTextField.text")); // NOI18N
         parentGroupTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.parentGroupTextField.toolTipText")); // NOI18N
+        parentGroupTextField.setFocusable(false);
+        parentGroupTextField.setRequestFocusEnabled(false);
+        parentGroupTextField.setVerifyInputWhenFocusTarget(false);
 
-        groupNameTextField.setText(org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.groupNameTextField.text")); // NOI18N
+        groupNameTextField.setText(org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.Наименование.text")); // NOI18N
+        groupNameTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.Наименование.toolTipText")); // NOI18N
+        groupNameTextField.setName("Наименование"); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.jLabel2.text")); // NOI18N
         jLabel2.setToolTipText(org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.jLabel2.toolTipText")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(CreateGroupPanel.class, "CreateGroupPanel.jLabel1.text")); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        javax.swing.GroupLayout innerPanelLayout = new javax.swing.GroupLayout(innerPanel);
+        innerPanel.setLayout(innerPanelLayout);
+        innerPanelLayout.setHorizontalGroup(
+            innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(innerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(parentGroupTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                     .addComponent(groupNameTextField))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        innerPanelLayout.setVerticalGroup(
+            innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(innerPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(parentGroupTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(innerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(groupNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(innerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(innerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField groupNameTextField;
+    private javax.swing.JPanel innerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField parentGroupTextField;

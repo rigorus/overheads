@@ -109,6 +109,12 @@
             <artifactId>org-openide-dialogs</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>ValidationAPI</artifactId>
+            <version>RELEASE731</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>

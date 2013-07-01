@@ -2,6 +2,7 @@ package ru.sirius.overheads.documents.goods;
 
 import java.util.Set;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import ru.sirius.overheads.model.PositionService;
 import ru.sirius.overheads.model.entity.Position;
 
@@ -15,18 +16,26 @@ public class GoodsTreeBuilder {
         root = PositionService.getRootPosition();
     }
             
-    public DefaultMutableTreeNode buildGroupTree(){
+    public DefaultTreeModel buildGroupTree(){
         
         GoodsNode tree = new GoodsNode(root);
-        addChildren(tree, root.getChildren(),true);
-        return tree;
+        addChildren(tree, root.getChildren(),true);        
+        return new DefaultTreeModel(tree);
     }
 
-    public DefaultMutableTreeNode buidComplexTree() {
+    public GoodsTreeTableModel buidComplexTree() {
         GoodsNode tree = new GoodsNode(root);
         addChildren(tree, root.getChildren(), false);
-        return tree;
+        return new GoodsTreeTableModel(tree);
     }
+
+    public void createNewGroup(DefaultMutableTreeNode parentNode, Position newGroup) {
+        PositionService.addGroup(newGroup);        
+        GoodsNode node = new GoodsNode(newGroup);
+        parentNode.add(node);
+    }
+    
+    
     
     private void addChildren(GoodsNode node, Set<Position> children, boolean onlyGroup){
         
