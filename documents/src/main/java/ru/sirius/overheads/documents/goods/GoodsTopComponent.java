@@ -1,10 +1,11 @@
 package ru.sirius.overheads.documents.goods;
 
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.netbeans.validation.api.ui.swing.ValidationPanel;
@@ -36,7 +37,7 @@ import ru.sirius.overheads.model.entity.Position;
     "HINT_GoodsTopComponent=This is a Goods window"
 })
 public final class GoodsTopComponent extends TopComponent {
-    
+
     private TreeModel groupModel;
     private GoodsTreeTableModel complexModel;
     private final GoodsTreeBuilder builder;
@@ -45,35 +46,19 @@ public final class GoodsTopComponent extends TopComponent {
 
         builder = new GoodsTreeBuilder();
         groupModel = builder.buildGroupTree();
-        groupModel.addTreeModelListener(new TreeModelListener() {
-
-            @Override
-            public void treeNodesChanged(TreeModelEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public void treeNodesInserted(TreeModelEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public void treeNodesRemoved(TreeModelEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public void treeStructureChanged(TreeModelEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });
         complexModel = builder.buidComplexTree();
-        
+
         initComponents();
         setName(Bundle.CTL_GoodsTopComponent());
         setToolTipText(Bundle.HINT_GoodsTopComponent());
-       
+
         complexTreeTable.setTreeTableModel(complexModel);
+
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+        renderer.setLeafIcon(new ImageIcon(getClass().getResource("/ru/sirius/overheads/documents/goods/folder_close_16.png")));
+        renderer.setOpenIcon(new ImageIcon(getClass().getResource("/ru/sirius/overheads/documents/goods/folder_open_16.png")));
+        renderer.setClosedIcon(new ImageIcon(getClass().getResource("/ru/sirius/overheads/documents/goods/folder_close_16.png")));
+        groupTree.setCellRenderer(renderer);
     }
 
     /**
@@ -153,33 +138,35 @@ public final class GoodsTopComponent extends TopComponent {
     private void groupTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_groupTreeMouseClicked
         int clickCount = evt.getClickCount();
         int button = evt.getButton();
-        if (clickCount == 1 && button == MouseEvent.BUTTON3 ) {   
+        if (clickCount == 1 && button == MouseEvent.BUTTON3) {
             int x = evt.getX();
             int y = evt.getY();
             int row = groupTree.getClosestRowForLocation(x, y);
             groupTree.setSelectionRow(row);
-           
+
 //            int rowIndex = groupTree.getSelectedRow();
 //            TreePath path = classifierTreeTable.getPathForRow(rowIndex);
 //            NmNode node = (NmNode) path.getLastPathComponent();
 //            builder.mergeSelectionTree((NmNode) selectionModel.getRoot(), node);
 //            selectionTree.updateUI();
-            
+
             jPopupMenu1.show(groupTree, x, y);
         }
     }//GEN-LAST:event_groupTreeMouseClicked
 
     private void addGroupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGroupMenuItemActionPerformed
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode)groupTree.getSelectionPath().getLastPathComponent();
-        Position parent = (Position) node.getUserObject();    
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) groupTree.getSelectionPath().getLastPathComponent();
+        Position parent = (Position) node.getUserObject();
         CreateGroupPanel panel = new CreateGroupPanel(parent);
         ValidationPanel validationPanel = new ValidationPanel(panel.getValidationGroup());
-        validationPanel.setInnerComponent(panel);       
-        if( validationPanel.showOkCancelDialog("Создание подгруппы") ){
+        validationPanel.setInnerComponent(panel);
+        if (validationPanel.showOkCancelDialog("Создание подгруппы")) {
             builder.createNewGroup(node, panel.getGroup());
-        }       
-        
-        
+            groupTree.updateUI();
+            complexTreeTable.updateUI();
+        }
+
+
 //        DialogDescriptor descriptor = new DialogDescriptor(panel,"Создание подгруппы");
 //        DialogDisplayer.getDefault().notify(descriptor);
     }//GEN-LAST:event_addGroupMenuItemActionPerformed
@@ -191,7 +178,6 @@ public final class GoodsTopComponent extends TopComponent {
 //        DialogDescriptor descriptor = new DialogDescriptor(panel, "Создание артикула");
 //        DialogDisplayer.getDefault().notify(descriptor);
     }//GEN-LAST:event_addArticleMenuItemActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addArticleMenuItem;
     private javax.swing.JMenuItem addGroupMenuItem;
@@ -202,6 +188,7 @@ public final class GoodsTopComponent extends TopComponent {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
+
     @Override
     public void componentOpened() {
         // TODO add custom code on component opening
