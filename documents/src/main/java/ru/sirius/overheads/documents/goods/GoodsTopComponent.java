@@ -1,7 +1,9 @@
 package ru.sirius.overheads.documents.goods;
 
 import java.awt.event.MouseEvent;
+import java.util.Locale;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -55,9 +57,9 @@ public final class GoodsTopComponent extends TopComponent {
         complexTreeTable.setTreeTableModel(complexModel);
 
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-        renderer.setLeafIcon(new ImageIcon(getClass().getResource("/ru/sirius/overheads/documents/goods/folder_close_16.png")));
-        renderer.setOpenIcon(new ImageIcon(getClass().getResource("/ru/sirius/overheads/documents/goods/folder_open_16.png")));
-        renderer.setClosedIcon(new ImageIcon(getClass().getResource("/ru/sirius/overheads/documents/goods/folder_close_16.png")));
+        renderer.setLeafIcon(new ImageIcon(getClass().getResource("folder_close_16.png")));
+        renderer.setOpenIcon(new ImageIcon(getClass().getResource("folder_open_16.png")));
+        renderer.setClosedIcon(new ImageIcon(getClass().getResource("folder_close_16.png")));
         groupTree.setCellRenderer(renderer);
     }
 
@@ -132,7 +134,10 @@ public final class GoodsTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_groupTreeValueChanged
-        // TODO add your handling code here:
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) evt.getNewLeadSelectionPath().getLastPathComponent();
+        complexModel.setRoot(node);
+        complexTreeTable.setTreeTableModel(complexModel);
+        complexTreeTable.updateUI();
     }//GEN-LAST:event_groupTreeValueChanged
 
     private void groupTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_groupTreeMouseClicked
@@ -143,13 +148,6 @@ public final class GoodsTopComponent extends TopComponent {
             int y = evt.getY();
             int row = groupTree.getClosestRowForLocation(x, y);
             groupTree.setSelectionRow(row);
-
-//            int rowIndex = groupTree.getSelectedRow();
-//            TreePath path = classifierTreeTable.getPathForRow(rowIndex);
-//            NmNode node = (NmNode) path.getLastPathComponent();
-//            builder.mergeSelectionTree((NmNode) selectionModel.getRoot(), node);
-//            selectionTree.updateUI();
-
             jPopupMenu1.show(groupTree, x, y);
         }
     }//GEN-LAST:event_groupTreeMouseClicked
@@ -160,8 +158,11 @@ public final class GoodsTopComponent extends TopComponent {
         CreateGroupPanel panel = new CreateGroupPanel(parent);
         ValidationPanel validationPanel = new ValidationPanel(panel.getValidationGroup());
         validationPanel.setInnerComponent(panel);
+        validationPanel.setLocale(new Locale("ru","RU"));
+        validationPanel.setMinimumSize(validationPanel.getSize());
+        validationPanel.setMaximumSize(validationPanel.getSize());
         if (validationPanel.showOkCancelDialog("Создание подгруппы")) {
-            builder.createNewGroup(node, panel.getGroup());
+            builder.createNewPosition(node, panel.getGroup());
             groupTree.updateUI();
             complexTreeTable.updateUI();
         }
@@ -174,9 +175,17 @@ public final class GoodsTopComponent extends TopComponent {
     private void addArticleMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArticleMenuItemActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) groupTree.getSelectionPath().getLastPathComponent();
         Position parent = (Position) node.getUserObject();
-//        CreateGroupPanel panel = new CreateArticlePanel(parent);
-//        DialogDescriptor descriptor = new DialogDescriptor(panel, "Создание артикула");
-//        DialogDisplayer.getDefault().notify(descriptor);
+        CreateArticlePanel panel = new CreateArticlePanel(parent);
+        ValidationPanel validationPanel = new ValidationPanel(panel.getValidationGroup());
+        validationPanel.setInnerComponent(panel);
+        validationPanel.setLocale(new Locale("ru", "RU"));
+        validationPanel.setMinimumSize(validationPanel.getSize());
+        validationPanel.setMaximumSize(validationPanel.getSize());
+        if (validationPanel.showOkCancelDialog("Создание артикула")) {
+            builder.createNewPosition(node, panel.getArticle());
+            groupTree.updateUI();
+            complexTreeTable.updateUI();
+        }
     }//GEN-LAST:event_addArticleMenuItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addArticleMenuItem;

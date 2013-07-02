@@ -28,12 +28,13 @@ public class GoodsTreeBuilder {
         return new GoodsTreeTableModel(tree);
     }
 
-    public void createNewGroup(DefaultMutableTreeNode parentNode, Position newGroup) {
-        PositionService.addGroup(newGroup);
-        GoodsNode node = new GoodsNode(newGroup);
-        parentNode.add(node);
+    public void createNewPosition(DefaultMutableTreeNode parentNode, Position article) {
+        PositionService.addPosition(article);
+        GoodsNode node = new GoodsNode(article);
+        parentNode.add(node);        
     }
 
+    
     private void addChildren(GoodsNode node, Set<Position> children, boolean onlyGroup) {
 
         if (children.isEmpty()) {
