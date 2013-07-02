@@ -30,6 +30,7 @@ public class GoodsTreeBuilder {
 
     public void createNewPosition(DefaultMutableTreeNode parentNode, Position article) {
         PositionService.addPosition(article);
+        //TODO здесь проблема не всегда прибавляем к parentNode этого дерева -> артикулы прибавляем к  другому ддереву
         GoodsNode node = new GoodsNode(article);
         parentNode.add(node);        
     }

@@ -116,9 +116,9 @@
     <Component class="javax.swing.JTextField" name="priceTextField">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="ru/sirius/overheads/documents/goods/Bundle.properties" key="CreateArticlePanel.price.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="ru/sirius/overheads/documents/goods/Bundle.properties" key="CreateArticlePanel.&#x426;&#x435;&#x43d;&#x430;.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
-        <Property name="name" type="java.lang.String" value="price" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="&#x426;&#x435;&#x43d;&#x430;" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -131,9 +131,9 @@
     <Component class="javax.swing.JTextField" name="fullNameTextField">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="ru/sirius/overheads/documents/goods/Bundle.properties" key="CreateArticlePanel.fullName.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="ru/sirius/overheads/documents/goods/Bundle.properties" key="CreateArticlePanel.&#x423;&#x43d;&#x438;&#x43a;&#x430;&#x43b;&#x44c;&#x43d;&#x43e;&#x435; &#x43d;&#x430;&#x438;&#x43c;&#x435;&#x43d;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x435;.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
-        <Property name="name" type="java.lang.String" value="fullName" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="&#x423;&#x43d;&#x438;&#x43a;&#x430;&#x43b;&#x44c;&#x43d;&#x43e;&#x435; &#x43d;&#x430;&#x438;&#x43c;&#x435;&#x43d;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x435;" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

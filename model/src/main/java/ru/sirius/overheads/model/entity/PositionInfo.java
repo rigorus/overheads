@@ -36,5 +36,52 @@ public class PositionInfo implements Serializable {
     @Column(name = "NEXT_PRICE_DATE")
     @Temporal(TemporalType.DATE)
     private Date changePriceDate;
-   
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getNextPrice() {
+        return nextPrice;
+    }
+
+    public void setNextPrice(int nextPrice) {
+        this.nextPrice = nextPrice;
+    }
+
+    public Date getChangePriceDate() {
+        return changePriceDate;
+    }
+
+    public void setChangePriceDate(Date changePriceDate) {
+        this.changePriceDate = changePriceDate;
+    }
 }

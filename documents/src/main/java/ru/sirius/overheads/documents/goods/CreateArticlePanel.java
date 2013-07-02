@@ -7,6 +7,7 @@ package ru.sirius.overheads.documents.goods;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.swing.SwingValidationGroup;
 import ru.sirius.overheads.model.entity.Position;
+import ru.sirius.overheads.model.entity.PositionInfo;
 
 /**
  *
@@ -15,6 +16,7 @@ import ru.sirius.overheads.model.entity.Position;
 public class CreateArticlePanel extends javax.swing.JPanel {
 
     private Position article = new Position();
+    private PositionInfo info = new PositionInfo();
     private final SwingValidationGroup validationGroup = SwingValidationGroup.create();
 
     /**
@@ -39,8 +41,9 @@ public class CreateArticlePanel extends javax.swing.JPanel {
 
     public Position getArticle() {
         article.setName(nameTextField.getText());
-//        article.getInfo() TODO как тут быть то ????
+        article.setInfo(info);
         article.setPrice(Integer.parseInt(priceTextField.getText()));
+        info.setFullName(fullNameTextField.getText());
         return article;
     }
 
@@ -80,13 +83,13 @@ public class CreateArticlePanel extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel3.text")); // NOI18N
 
-        priceTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.price.text")); // NOI18N
-        priceTextField.setName("price"); // NOI18N
+        priceTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.Цена.text")); // NOI18N
+        priceTextField.setName("Цена"); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel4.text")); // NOI18N
 
-        fullNameTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.fullName.text")); // NOI18N
-        fullNameTextField.setName("fullName"); // NOI18N
+        fullNameTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.Уникальное наименование.text")); // NOI18N
+        fullNameTextField.setName("Уникальное наименование"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

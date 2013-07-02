@@ -4,6 +4,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import ru.sirius.overheads.model.entity.Position;
+import ru.sirius.overheads.model.entity.PositionInfo;
 import ru.sirius.overheads.model.utils.HibernateUtil;
 
 public class PositionService {
@@ -46,6 +47,13 @@ public class PositionService {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(newGroup);
+        
+        PositionInfo info = newGroup.getInfo();
+        if( info != null){
+            info.setId(newGroup.getId());
+            session.save(info);
+        }
+        
         // TODO пересчет индексов !!! группы !!!
         session.getTransaction().commit();
     }
