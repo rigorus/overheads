@@ -179,8 +179,6 @@ public final class GoodsTopComponent extends TopComponent {
         ValidationPanel validationPanel = new ValidationPanel(panel.getValidationGroup());
         validationPanel.setInnerComponent(panel);
         validationPanel.setLocale(new Locale("ru", "RU"));
-        validationPanel.setMinimumSize(validationPanel.getSize());
-        validationPanel.setMaximumSize(validationPanel.getSize());
         if (validationPanel.showOkCancelDialog("Создание артикула")) {
             builder.createNewPosition(node, panel.getArticle());
             groupTree.updateUI();

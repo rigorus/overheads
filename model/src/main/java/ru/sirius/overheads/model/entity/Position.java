@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "POSITION")
@@ -23,14 +25,18 @@ public class Position implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "POSITION_ID")
     private int id;
-               
+    
+//    @NaturalId(mutable = true)
+//    @Column(name = "FULL_NAME", unique = true, length = 1000)
+//    private String fullName;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Position parent;
-  
+    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
-    private Set<Position> children = new HashSet<Position>(0);
-
+    private Set<Position> children = new HashSet<>(0);
+    
     @Column(name = "IS_GROUP")
     private boolean group;
     
@@ -38,9 +44,9 @@ public class Position implements java.io.Serializable {
     private int breadthIndex;
     
     @Column(name = "DEBTH_INDEX")
-    private int debthIndex;    
+    private int debthIndex;
     
-    @Column(name = "POSITION_NAME", length = 500)    
+    @Column(name = "POSITION_NAME", length = 500)
     private String name;
     
     @Column(name = "PRICE")
@@ -48,8 +54,8 @@ public class Position implements java.io.Serializable {
     
     @Column(name = "DELETED", nullable = false)
     private boolean deleted;
-    
-    @OneToOne(fetch = FetchType.LAZY )
+   
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "POSITION_ID", referencedColumnName = "POSITION_ID", updatable = false)
     private PositionInfo info;
 
@@ -64,6 +70,14 @@ public class Position implements java.io.Serializable {
         this.id = id;
     }
 
+//    public String getFullName() {
+//        return fullName;
+//    }
+//
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
+    
     public Position getParent() {
         return parent;
     }
@@ -134,5 +148,5 @@ public class Position implements java.io.Serializable {
 
     public void setInfo(PositionInfo info) {
         this.info = info;
-    }        
+    }
 }

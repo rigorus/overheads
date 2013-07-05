@@ -14,27 +14,25 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.ForeignKey;
-
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "INVOICE")
-public class Invoice implements Serializable{
+public class Invoice implements Serializable {
 
     @Id
     @Column(name = "INVOICE_ID")
     private int name;
-    
+    @NaturalId(mutable = true)
+    @Column(name = "FULL_NAME", unique = true, nullable = false, length = 1000)
+    private String fullName;
     @ManyToOne(fetch = FetchType.LAZY)
     @ForeignKey(name = "INVOICE__PARTNER__FK")
     @JoinColumn(name = "PARTNER_ID")
     private Partner partner;
-                   
     @Column(name = "INVOICE_DATE")
-    @Temporal(TemporalType.DATE)   
+    @Temporal(TemporalType.DATE)
     private Date date;
-    
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice")
     private Set<InvoicePosition> positions;
-
-    
 }
