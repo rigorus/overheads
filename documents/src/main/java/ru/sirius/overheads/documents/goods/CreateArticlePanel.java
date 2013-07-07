@@ -13,14 +13,14 @@ import ru.sirius.overheads.model.entity.PositionInfo;
  *
  * @author igor
  */
-public class CreateArticlePanel extends javax.swing.JFrame {
+public class CreateArticlePanel extends javax.swing.JPanel {
 
     private Position article = new Position();
     private PositionInfo info = new PositionInfo();
     private final SwingValidationGroup validationGroup = SwingValidationGroup.create();
 
     /**
-     * Creates new form CreateGroupPanel
+     * Creates new form CreateArticleFrame
      */
     public CreateArticlePanel(Position parent) {
 
@@ -43,7 +43,7 @@ public class CreateArticlePanel extends javax.swing.JFrame {
         article.setName(nameTextField.getText());
         article.setInfo(info);
         article.setPrice(Integer.parseInt(priceTextField.getText()));
-        info.setFullName(fullNameTextField.getText());
+        info.setShortName(fullNameTextField.getText());
         return article;
     }
 
@@ -56,46 +56,43 @@ public class CreateArticlePanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        parentGroupTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         priceTextField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        parentGroupTextField = new javax.swing.JTextField();
         fullNameTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
-        setLocationByPlatform(true);
-        setResizable(false);
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel2.text")); // NOI18N
-        jLabel2.setToolTipText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel2.toolTipText")); // NOI18N
-
-        nameTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.nameTextField.text")); // NOI18N
-        nameTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.nameTextField.toolTipText")); // NOI18N
+        nameTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.nameTextField.text_1")); // NOI18N
+        nameTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.nameTextField.toolTipText_1")); // NOI18N
         nameTextField.setName("Наименование"); // NOI18N
 
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel2.text_1")); // NOI18N
+        jLabel2.setToolTipText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel2.toolTipText_1")); // NOI18N
+
+        priceTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.priceTextField.text")); // NOI18N
+        priceTextField.setName("Цена"); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel3.text_1")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel1.text_1")); // NOI18N
+
         parentGroupTextField.setEditable(false);
-        parentGroupTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.parentGroupTextField.text")); // NOI18N
-        parentGroupTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.parentGroupTextField.toolTipText")); // NOI18N
+        parentGroupTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.parentGroupTextField.text_1")); // NOI18N
+        parentGroupTextField.setToolTipText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.parentGroupTextField.toolTipText_1")); // NOI18N
         parentGroupTextField.setFocusable(false);
         parentGroupTextField.setRequestFocusEnabled(false);
         parentGroupTextField.setVerifyInputWhenFocusTarget(false);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel1.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel3.text")); // NOI18N
-
-        priceTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.Цена.text")); // NOI18N
-        priceTextField.setName("Цена"); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel4.text")); // NOI18N
-
-        fullNameTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.Уникальное наименование.text")); // NOI18N
+        fullNameTextField.setText(org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.fullNameTextField.text")); // NOI18N
         fullNameTextField.setName("Уникальное наименование"); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(CreateArticlePanel.class, "CreateArticlePanel.jLabel4.text_1")); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -104,12 +101,12 @@ public class CreateArticlePanel extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(priceTextField)
                     .addComponent(nameTextField)
-                    .addComponent(parentGroupTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(parentGroupTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(fullNameTextField))
                 .addContainerGap())
         );
@@ -129,10 +126,10 @@ public class CreateArticlePanel extends javax.swing.JFrame {
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

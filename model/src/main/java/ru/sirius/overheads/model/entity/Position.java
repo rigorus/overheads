@@ -18,18 +18,14 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table(name = "POSITION")
+@Table(name = "POSITION", uniqueConstraints = @UniqueConstraint(columnNames = "POSITION_NAME"))
 public class Position implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "POSITION_ID")
     private int id;
-    
-//    @NaturalId(mutable = true)
-//    @Column(name = "FULL_NAME", unique = true, length = 1000)
-//    private String fullName;
-    
+       
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Position parent;
@@ -46,7 +42,8 @@ public class Position implements java.io.Serializable {
     @Column(name = "DEBTH_INDEX")
     private int debthIndex;
     
-    @Column(name = "POSITION_NAME", length = 500)
+    @NaturalId(mutable = true)
+    @Column(name = "POSITION_NAME", length = 1000)
     private String name;
     
     @Column(name = "PRICE")
@@ -69,14 +66,6 @@ public class Position implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
-//    public String getFullName() {
-//        return fullName;
-//    }
-//
-//    public void setFullName(String fullName) {
-//        this.fullName = fullName;
-//    }
     
     public Position getParent() {
         return parent;

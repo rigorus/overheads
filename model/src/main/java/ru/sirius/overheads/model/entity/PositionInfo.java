@@ -8,12 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.NaturalId;
 
 
 @Entity
-@Table(name = "POSITION_INFO", uniqueConstraints = @UniqueConstraint(columnNames = "FULL_NAME"))
+@Table(name = "POSITION_INFO")
 public class PositionInfo implements Serializable {
 
     @Id
@@ -21,8 +20,8 @@ public class PositionInfo implements Serializable {
     private int id;
     
     @NaturalId(mutable = true)
-    @Column(name = "FULL_NAME", unique = true, nullable = false, length = 1000)
-    private String fullName;
+    @Column(name = "SHORT_NAME", unique = true, nullable = false, length = 500)
+    private String shortName;
         
     @Column(name = "DESCRIPTION", length = 4000)
     private String description;
@@ -45,12 +44,12 @@ public class PositionInfo implements Serializable {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     public String getDescription() {

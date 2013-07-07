@@ -3,7 +3,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">org.h2.Driver</property>
-    <property name="hibernate.connection.url">jdbc:h2:tcp://localhost/~/Projects/sirius/overheads/data/db0001</property>
+    <property name="hibernate.connection.url">jdbc:h2:tcp://localhost/E:/Projects/overheads/data/db0001</property>
     <property name="hibernate.connection.username">dbadmin</property>
     <property name="hibernate.connection.password">dbadmin</property>
     <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
@@ -18,9 +18,9 @@
     <mapping class="ru.sirius.overheads.model.entity.DeliveryPosition"/>
     <mapping class="ru.sirius.overheads.model.entity.Invoice"/>
     <mapping class="ru.sirius.overheads.model.entity.InvoicePosition"/>
-    <mapping class="ru.sirius.overheads.model.entity.Template"/>        
-    <mapping class="ru.sirius.overheads.model.entity.TemplatePosition"/>        
+    <mapping class="ru.sirius.overheads.model.entity.Template"/>
+    <mapping class="ru.sirius.overheads.model.entity.TemplatePosition"/>
     <mapping class="ru.sirius.overheads.model.entity.Partner"/>
-    <mapping class="ru.sirius.overheads.model.entity.Charges"/>        
+    <mapping class="ru.sirius.overheads.model.entity.Charges"/>
   </session-factory>
 </hibernate-configuration>
