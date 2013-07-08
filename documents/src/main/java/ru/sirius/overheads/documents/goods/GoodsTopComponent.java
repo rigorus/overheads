@@ -31,7 +31,7 @@ import ru.sirius.overheads.model.entity.Position;
         displayName = "#CTL_GoodsAction",
         preferredID = "GoodsTopComponent")
 @Messages({
-    "CTL_GoodsAction=Goods",
+    "CTL_GoodsAction=Ассортимент",
     "CTL_GoodsTopComponent=Goods Window",
     "HINT_GoodsTopComponent=This is a Goods window"
 })
