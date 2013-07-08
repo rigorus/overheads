@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
+OpenIDE-Module-Layer: ru/sirius/overheads/branding/layer.xml
 OpenIDE-Module-Localizing-Bundle: ru/sirius/overheads/branding/Bundle.properties
 AutoUpdate-Essential-Module: true
