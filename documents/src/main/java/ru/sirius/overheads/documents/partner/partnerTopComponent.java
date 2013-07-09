@@ -22,14 +22,14 @@ import org.openide.util.NbBundle.Messages;
         persistenceType = TopComponent.PERSISTENCE_ALWAYS)
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "ru.sirius.overheads.documents.partner.partnerTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
+@ActionReference(path = "Menu/Справочники" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_partnerAction",
         preferredID = "partnerTopComponent")
 @Messages({
-    "CTL_partnerAction=partner",
-    "CTL_partnerTopComponent=partner Window",
-    "HINT_partnerTopComponent=This is a partner window"
+    "CTL_partnerAction=Партнёры",
+    "CTL_partnerTopComponent=Партнёры",
+    "HINT_partnerTopComponent=Партнёры"
 })
 public final class partnerTopComponent extends TopComponent {
 

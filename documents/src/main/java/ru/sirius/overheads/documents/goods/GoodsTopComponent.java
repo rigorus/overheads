@@ -26,14 +26,14 @@ import ru.sirius.overheads.model.entity.Position;
         persistenceType = TopComponent.PERSISTENCE_ALWAYS)
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "ru.sirius.overheads.documents.goods.GoodsTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
+@ActionReference(path = "Menu/Справочники" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_GoodsAction",
         preferredID = "GoodsTopComponent")
 @Messages({
     "CTL_GoodsAction=Ассортимент",
-    "CTL_GoodsTopComponent=Goods Window",
-    "HINT_GoodsTopComponent=This is a Goods window"
+    "CTL_GoodsTopComponent=Ассортимент",
+    "HINT_GoodsTopComponent=Ассортимент"
 })
 public final class GoodsTopComponent extends TopComponent {
 
